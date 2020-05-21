@@ -6,7 +6,7 @@ import java.util.Date;
 public class Appointment {
 
     // Attributes
-    private String patient;
+    private Patient patient;
     private int id;
     private Hospital hospital;
     private Date date;
@@ -17,7 +17,7 @@ public class Appointment {
      * @param hospital
      * @param date
      */
-    public Appointment(int id, String patient, Hospital hospital, Date date){
+    public Appointment(int id, Patient patient, Hospital hospital, Date date){
         this.id = id;
         this.patient = patient;
         this.hospital = hospital;
@@ -29,9 +29,9 @@ public class Appointment {
 
     public void setHospital(Hospital hospital) { this.hospital = hospital; }
 
-    public String getPatient() { return patient; }
+    public Patient getPatient() { return patient; }
 
-    public void setPatient(String patient) { this.patient = patient; }
+    public void setPatient(Patient patient) { this.patient = patient; }
 
     public int getId() { return id; }
 

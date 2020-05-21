@@ -23,6 +23,7 @@ public class Hospital {
      * @param min
      */
     public Hospital(int id, String name, String phone, String day1, String day2, int hour, int min){
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.timeAtention = LocalTime.of(hour, min);
@@ -55,11 +56,11 @@ public class Hospital {
         this.day2 = day2;
     }
 
-    public String getNameH() {
+    public String getName() {
         return name;
     }
 
-    public void setNameH(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -77,6 +78,14 @@ public class Hospital {
 
     public void setTimeAtention(LocalTime timeAtention) {
         this.timeAtention = timeAtention;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /*

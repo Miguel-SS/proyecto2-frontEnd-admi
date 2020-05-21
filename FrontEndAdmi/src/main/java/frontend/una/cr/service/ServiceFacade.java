@@ -70,17 +70,17 @@ public class ServiceFacade {
      * @param id
      * @return
      */
-    public Object searchUser(String id) {
+    public Object searchUser(int id) {
         if (admins.size() > 0) {
             for (Admin admin : admins) {
-                if (id.equals(admin.getId())) {
+                if (id == admin.getId()) {
                     return admin;
                 }
             }
         }
         if (patients.size() > 0) {
             for (Patient patient : patients) {
-                if (id.equals(patient.getId())) {
+                if (id == patient.getId()) {
                     return patient;
                 }
             }
