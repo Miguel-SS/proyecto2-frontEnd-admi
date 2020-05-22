@@ -92,12 +92,12 @@ public class AdminView extends JFrame{
 
     // creation .................................................................
     private JPanel creatorPanel = new JPanel( new BorderLayout());
-    private JTextField nameTextFild = new JTextField();
+    private JTextField idTextFild = new JTextField();
     private JTextField hospitalTextFild = new JTextField();
     private JFormattedTextField dayTextFild = new  JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));;
     private JTextField hourTextFild = new JTextField();
     private JTextField idAppointmentTextField = new JTextField();
-    private JLabel nameLabel = new JLabel("Nombre: ");
+    private JLabel idLabel = new JLabel("Nombre: ");
     private JLabel idapointmentLabel = new JLabel("Id de la cita: ");
     private  JLabel hospitalLabel = new JLabel("Hospital: ");
     private JLabel dayLabel = new JLabel("Fecha (dd/mm/aa): ");
@@ -139,7 +139,7 @@ public class AdminView extends JFrame{
 
 
         //creating Controller
-        AdminController controller = new AdminController(this, admin, service);
+        AdminController controller = new AdminController(this, service);
         addListener(controller);
     }
 
@@ -244,8 +244,8 @@ public class AdminView extends JFrame{
     private void creatingCreatorAppointment(){
 
         JPanel allpanel = new JPanel(new GridLayout(5, 2));
-        allpanel.add(nameLabel);
-        allpanel.add(nameTextFild);
+        allpanel.add(idLabel);
+        allpanel.add(idTextFild);
         allpanel.add(idapointmentLabel);
         allpanel.add(idAppointmentTextField);
         allpanel.add(hospitalLabel);
@@ -315,7 +315,7 @@ public class AdminView extends JFrame{
 
 
     // text Fields
-    public String getNameTextFild() { return nameTextFild.getText(); }
+    public String getIdTextFild() { return idTextFild.getText(); }
     public String getIdAppointmentTextField() {return idAppointmentTextField.getText();}
     public String getHospitalTextFild() { return hospitalTextFild.getText();}
     public String getHourTextFild(){return hourTextFild.getText();}
@@ -326,7 +326,7 @@ public class AdminView extends JFrame{
     public String getChosenPatientText(){return chosenPatientText.getText();}
 
 
-    public void setNameTextFild() {  nameTextFild.setText(""); }
+    public void setNameTextFild() {  idTextFild.setText(""); }
     public void setIdAppointmentTextField() { idAppointmentTextField.setText("");}
     public void setHospitalTextFild() {  hospitalTextFild.setText("");}
     public void setHourTextFild(){ hourTextFild.setText("");}

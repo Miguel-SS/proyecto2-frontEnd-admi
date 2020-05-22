@@ -82,7 +82,7 @@ public class HospitalView extends JFrame{
     }
 
     private void creatingTextField(){
-        nameHospitalTextField = new JLabel(hospital.getNameH());
+        nameHospitalTextField = new JLabel(hospital.getName());
         day1TextField = new JTextField(hospital.getDay1());
         day2TextField = new JTextField(hospital.getDay2());
         hourTextField = new JTextField(hospital.getTime());
@@ -122,7 +122,5 @@ public class HospitalView extends JFrame{
         UIManager.setLookAndFeel(
                 "com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
         );
-
-
     }
 }

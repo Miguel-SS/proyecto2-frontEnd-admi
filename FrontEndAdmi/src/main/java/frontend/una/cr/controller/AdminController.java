@@ -2,10 +2,12 @@ package frontend.una.cr.controller;
 
 import frontend.una.cr.model.Admin;
 import frontend.una.cr.model.Appointment;
+import frontend.una.cr.model.Hospital;
 import frontend.una.cr.model.Patient;
 import frontend.una.cr.service.ServiceFacade;
 import frontend.una.cr.utillities.Constants;
 import frontend.una.cr.view.AdminView;
+import frontend.una.cr.view.EditAppointmentView;
 import frontend.una.cr.view.EditPatientView;
 import frontend.una.cr.view.HospitalView;
 
@@ -14,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
 
 public class AdminController implements ActionListener {
@@ -34,19 +35,16 @@ public class AdminController implements ActionListener {
 
 
     /**
-     *
      * @param admin
-     * @param admodel
      * @param servis
      * @throws IOException
      */
-    public AdminController(AdminView admin, Admin admodel, ServiceFacade servis) throws IOException {
+    public AdminController(AdminView admin, ServiceFacade servis) throws IOException {
         nameH1 = "Hospital CYM";
         nameH2 = "Centro Medico del Este";
         service = servis;
         view = admin;
         patient = null;
-        // hospital = null;
         appointment = null;
 
         patients = service.loadPatientsObjWrapper();
@@ -125,26 +123,31 @@ public class AdminController implements ActionListener {
         if (ev == view.getSaveButton()) {
             try {
                 saveAppointment();
-            } catch (ParseException ex) { ex.printStackTrace(); }
+            } catch (NumberFormatException | NullPointerException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-    private void saveAppointment() throws ParseException {
-        String name = view.getNameTextFild();
-        int id = Integer.parseInt(view.getIdAppointmentTextField());
-        String hospital = view.getHospitalTextFild();
+    private void saveAppointment() throws NullPointerException,
+            NumberFormatException{
+        String idPatient = view.getIdTextFild();
+        String id = view.getIdAppointmentTextField();
+        String hospitalTxt = view.getHospitalTextFild();
         String hour = view.getHourTextFild();
         Date day = view.getDayTextFild();
 
-        if (!"".equals(name) && // checking name
+        if (!"".equals(idPatient) && // checking id patient
                 !"".equals(id) && // checking id
-                !"".equals(hospital) && // checking hospital
+                !"".equals(hospitalTxt) && // checking hospital
                 !"".equals(day) && // checking day
                 !"".equals(hour)
         )  {
-            if (service.getHospital(hospital) != null) {
-                if (service.searchUser(id) == null) {
-                    service.add(new Appointment(id, name, hospital,hour, day));
+            Hospital hospital = service.getHospital(hospitalTxt);
+            Patient patient = (Patient) service.searchUser(Integer.parseInt(id));
+            if (hospital != null && patient != null) {
+                if (service.searchUser(Integer.parseInt(id)) == null) {
+                    service.add(new Appointment(Integer.parseInt(id), patient, hospital, day));
                     appointments = service.loadAppointmentsObjWrapper();
                     tableModelAppointments.setDataVector(appointments, Constants.APPOINTMENT_HEADER);
                     view.setNameTextFild();
@@ -172,8 +175,6 @@ public class AdminController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
 
     private void saveHospital1() throws ClassNotFoundException, UnsupportedLookAndFeelException,
             InstantiationException, IllegalAccessException {
@@ -234,38 +235,36 @@ public class AdminController implements ActionListener {
     }
 
     private void choseAnAppointment(){
-        String id = view.getChosenAppointment();
+        int id = Integer.parseInt(view.getChosenAppointment());
         appointment  = service.searchAppointment(id);
 
         if(appointment!=null) {
             view.getChosenAppointmentLabel().setText(
                     view.getChoseAppointmentBt().getText() + " " + appointment.getPatient()
             );
-        } else { view.showMessage("No se econtro una cita con ese Id"); }
+        } else { view.showMessage("No se encontro una cita con ese Id"); }
     }
-
 
     private void editPatient() throws ClassNotFoundException, UnsupportedLookAndFeelException,
             InstantiationException, IllegalAccessException {
-        if(patient!=null){
-            EditPatientView ed = new EditPatientView(patient, service, view.getAdmin());
+        if(patient != null) {
+            new EditPatientView(patient, service, view.getAdmin());
         } else { view.showMessage("No se eligio Paciente"); }
     }
 
     private void chosenAPatient(){
-        String id = view.getChosenPatientText();
+        int id = Integer.parseInt(view.getChosenPatientText());
         patient = (Patient) service.searchUser(id);
         if(patient != null) {
             view.getChosenPatientLabel().setText(view.getChosenPatientText()+" "+patient.getName());
         } else { view.showMessage("No se ha encontrado Paciente con ese id"); }
-
     }
 
     private void editAppointment() throws ClassNotFoundException, UnsupportedLookAndFeelException,
             InstantiationException, IllegalAccessException {
 
         if(appointment != null) {
-            EditAppointmentView ed = new EditAppointmentView(appointment, view.getAdmin(), service);
+            new EditAppointmentView(appointment, view.getAdmin(), service);
         } else { view.showMessage("Cita no elegida"); }
     }
 }

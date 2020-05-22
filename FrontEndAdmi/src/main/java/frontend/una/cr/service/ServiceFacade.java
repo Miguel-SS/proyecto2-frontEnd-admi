@@ -142,10 +142,10 @@ public class ServiceFacade {
      * @param id
      * @return
      */
-    public Object[][] loadAppointmentsFromPatientObjWrapper(String id) {
+    public Object[][] loadAppointmentsFromPatientObjWrapper(int id) {
         Patient auxPatient = null;
         for (Patient patient : patients) {
-            if (id.equals(patient.getId())) {
+            if (id == patient.getId()) {
                 auxPatient = patient;
                 break;
             }
@@ -213,7 +213,7 @@ public class ServiceFacade {
     public Hospital getHospital(String name) {
         if (hospitals.size() > 0) {
             for (Hospital hospital : hospitals) {
-                if (hospital.getNameH().equals(name)) {
+                if (hospital.getName().equals(name)) {
                     return hospital;
                 }
             }
@@ -229,10 +229,10 @@ public class ServiceFacade {
                 1998, "87415630", "Tibas", "9876"
         );
 
-        Appointment appointment1 = new Appointment(1, miguelPatient.getName(), esteHospital, new Date(20,5,8));
-        Appointment appointment2 = new Appointment(2, miguelPatient.getName(), CYMHospital, new Date(20,03,30));
-        Appointment appointment3 = new Appointment(3, alePatient.getName(), esteHospital, new Date(20,11,24));
-        Appointment appointment4 = new Appointment(4, alePatient.getName(), CYMHospital, new Date(20,8,21));
+        Appointment appointment1 = new Appointment(1, miguelPatient, esteHospital, new Date(20,5,8));
+        Appointment appointment2 = new Appointment(2, miguelPatient, CYMHospital, new Date(20,03,30));
+        Appointment appointment3 = new Appointment(3, alePatient, esteHospital, new Date(20,11,24));
+        Appointment appointment4 = new Appointment(4, alePatient, CYMHospital, new Date(20,8,21));
 
         miguelPatient.add(appointment1);
         miguelPatient.add(appointment2);

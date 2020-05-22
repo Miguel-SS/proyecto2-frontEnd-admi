@@ -2,6 +2,7 @@ package frontend.una.cr.controller;
 
 import frontend.una.cr.model.Admin;
 import frontend.una.cr.model.Appointment;
+import frontend.una.cr.model.Hospital;
 import frontend.una.cr.service.ServiceFacade;
 import frontend.una.cr.view.AdminView;
 import frontend.una.cr.view.EditAppointmentView;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Date;
 
 public class EditAppointmentController implements ActionListener {
 
@@ -68,7 +70,7 @@ public class EditAppointmentController implements ActionListener {
         String name = view.getNameTextFild();
         String hospName = view.getHospitalTextFild();
         int idApp = Integer.parseInt(view.getIdAppointmentTextField());
-        String day = view.getDayTextFild();
+        Date day = view.getDayTextFild();
         String hour = view.getHourTextFild();
 
         // Check if the txt fields are empty
@@ -77,10 +79,11 @@ public class EditAppointmentController implements ActionListener {
                 !"".equals(idApp) &&
                 !"".equals(day) &&
                 !"".equals(hour)) {
+            Hospital hospital = service.getHospital(hospName);
 
-            if(service.getHospital(hospName)!= null){
-                appointment.setHospital(hospName);
-                if(service.searchAppointment(idApp)== null){
+            if(hospital != null){
+                appointment.setHospital(hospital);
+                if(service.searchAppointment(idApp)== null) {
                     appointment.setId(idApp);
                     appointment.setPatient(name);
                     appointment.setDate(day);

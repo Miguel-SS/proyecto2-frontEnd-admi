@@ -55,11 +55,8 @@ public class EditAppointmentView extends JFrame {
         EditAppointmentController controller = new EditAppointmentController(this, service, admin);
         addActionListener(controller);
 
-
         setLocationRelativeTo(null);
         setVisible(true);
-
-
     }
 
     private void createText(){
