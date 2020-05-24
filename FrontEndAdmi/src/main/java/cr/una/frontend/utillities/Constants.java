@@ -30,4 +30,8 @@ public class Constants {
      *
      */
     public static final Object[] PATIENT_APPOINTMENTS_HEADER = {"Id", "Fecha", "Hora", "Consultorio"};
+
+
+
+    public static final String WS_ENDPOINT = "http://localhost:8083/api/";
 }
