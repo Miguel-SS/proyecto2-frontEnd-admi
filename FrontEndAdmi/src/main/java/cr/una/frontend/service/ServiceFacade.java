@@ -139,35 +139,6 @@ public class ServiceFacade {
     }
 
     /**
-     * @param id
-     * @return
-     */
-    public Object[][] loadAppointmentsFromPatientObjWrapper(int id) {
-        Patient auxPatient = null;
-        for (Patient patient : patients) {
-            if (id == patient.getId()) {
-                auxPatient = patient;
-                break;
-            }
-        }
-
-        Object[][] data = null;
-
-        List<Appointment> patientAppointments = auxPatient.getAppointments();
-
-        if(patientAppointments != null && patientAppointments.size() > 0) {
-            data = new Object[patientAppointments.size()][Constants.PATIENT_APPOINTMENTS_HEADER.length];
-            int i = 0;
-            for(Appointment appointment : patientAppointments) {
-                data[i][0] = checkIfNull(appointment.getId());
-                data[i][3] = checkIfNull(appointment.getHospital());
-                i++;
-            }
-        }
-        return data;
-    }
-
-    /**
      * @param obj
      * @return
      */
@@ -233,11 +204,6 @@ public class ServiceFacade {
         Appointment appointment2 = new Appointment(2, miguelPatient, CYMHospital, new Date(20,03,30), 7);
         Appointment appointment3 = new Appointment(3, alePatient, esteHospital, new Date(20,11,24), 7);
         Appointment appointment4 = new Appointment(4, alePatient, CYMHospital, new Date(20,8,21), 7);
-
-        miguelPatient.add(appointment1);
-        miguelPatient.add(appointment2);
-        alePatient.add(appointment3);
-        alePatient.add(appointment4);
 
         appointments.add(appointment1);
         appointments.add(appointment2);

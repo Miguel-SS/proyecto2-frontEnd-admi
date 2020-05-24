@@ -16,7 +16,6 @@ public class Patient {
 
     private String disease;
     private String observation;
-    private List<Appointment> appointments;
 
     /**
      *
@@ -45,7 +44,6 @@ public class Patient {
         this.password = password;
         this.disease = disease;
         this.observation = observation;
-        appointments = new ArrayList<Appointment>();
     }
 
     /**
@@ -67,12 +65,7 @@ public class Patient {
         this.password = password;
         this.disease = "INDEF";
         this.observation = "INDEF";
-        appointments = new ArrayList<Appointment>();
     }
-
-    public void add(Appointment newAppointment) { appointments.add(newAppointment); }
-
-    public void delete(Appointment delAppointment) { appointments.remove(delAppointment); }
 
     public String getDisease() {
         return disease;
@@ -89,8 +82,6 @@ public class Patient {
     public void setObservation(String observation) {
         this.observation = observation;
     }
-
-    public List<Appointment> getAppointments() { return appointments; }
 
     public String getLastName() {
         return lastName;
@@ -160,7 +151,6 @@ public class Patient {
                 ", address='" + address + '\'' +
                 ", disease='" + disease + '\'' +
                 ", observation='" + observation + '\'' +
-                ", appointments=" + appointments +
                 '}';
     }
 }
