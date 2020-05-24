@@ -1,12 +1,14 @@
-package frontend.una.cr.view;
+package cr.una.frontend.view;
 
-import frontend.una.cr.controller.EditAppointmentController;
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Appointment;
-import frontend.una.cr.service.ServiceFacade;
+import cr.una.frontend.controller.EditAppointmentController;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Appointment;
+import cr.una.frontend.service.ServiceFacade;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class EditAppointmentView extends JFrame {
 
@@ -16,12 +18,12 @@ public class EditAppointmentView extends JFrame {
 
     private JPanel creatorP= new JPanel( new BorderLayout());
     private JPanel downP = new JPanel();
-    private JTextField nameTextFild;
+    private JTextField idTextFild;
     private JTextField hospitalTextFild;
-    private JTextField dayTextFild;
+    private JFormattedTextField dayTextFild;
     private JTextField hourTextFild;
     private JTextField idAppointmentTextField;
-    private JLabel nameLabel = new JLabel("Nombre: ");
+    private JLabel idLabel = new JLabel("ID: ");
     private JLabel idapointmentLabel = new JLabel("Id de la cita: ");
     private  JLabel hospitalLabel = new JLabel("Hospital: ");
     private JLabel dayLabel = new JLabel("Fecha (dd/mm/aa): ");
@@ -60,19 +62,22 @@ public class EditAppointmentView extends JFrame {
     }
 
     private void createText(){
-        nameTextFild = new JTextField(appointment.getPatient().getName());
+        idTextFild = new JTextField(appointment.getPatient().getName());
         hospitalTextFild = new JTextField(appointment.getHospital().getName());
         idAppointmentTextField = new JTextField(appointment.getId());
         hourTextFild = new JTextField(appointment.getHour());
-        dayTextFild = new JTextField(appointment.getDate());
+        //dayTextFild = new JTextField(appointment.getDate());
+        dayTextFild = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
+        dayTextFild.setText(appointment.getDate().toString());
 
 
     }
+
     private void creatingAppointment(){
         createText();
         JPanel allpanel = new JPanel(new GridLayout(5, 2));
-        allpanel.add(nameLabel);
-        allpanel.add(nameTextFild);
+        allpanel.add(idLabel);
+        allpanel.add(idTextFild);
         allpanel.add(idapointmentLabel);
         allpanel.add(idAppointmentTextField);
         allpanel.add(hospitalLabel);
@@ -93,11 +98,11 @@ public class EditAppointmentView extends JFrame {
 
     }
 
-    public String getNameTextFild() { return nameTextFild.getText(); }
+    public String getIdTextFild() { return idTextFild.getText(); }
     public String getIdAppointmentTextField() {return idAppointmentTextField.getText();}
     public String getHospitalTextFild() { return hospitalTextFild.getText();}
     public String getHourTextFild(){return hourTextFild.getText();}
-    public String getDayTextFild(){ return dayTextFild.getText();}
+    public Date getDayTextFild(){ return (Date) dayTextFild.getValue();}
     public JButton getSaveButton() { return saveButton; }
     public JButton getDeleteButton() { return deleteButton; }
     public Appointment getAppointment() { return appointment;}

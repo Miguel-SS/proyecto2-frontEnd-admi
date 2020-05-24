@@ -1,6 +1,5 @@
-package frontend.una.cr.model;
+package cr.una.frontend.model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Appointment {
@@ -10,18 +9,21 @@ public class Appointment {
     private int id;
     private Hospital hospital;
     private Date date;
+    private int hour;
 
     /**
-     * @param patient
      * @param id
+     * @param patient
      * @param hospital
      * @param date
+     * @param hour
      */
-    public Appointment(int id, Patient patient, Hospital hospital, Date date){
+    public Appointment(int id, Patient patient, Hospital hospital, Date date, int hour){
         this.id = id;
         this.patient = patient;
         this.hospital = hospital;
         this.date = date;
+        this.hour = hour;
     }
 
     // Getters & setters
@@ -40,6 +42,10 @@ public class Appointment {
     public Date getDate() { return date; }
 
     public void setDate(Date date) { this.date = date; }
+
+    public int getHour() { return hour; }
+
+    public void setHour(int hour) { this.hour = hour; }
 
     @Override
     public String toString() {

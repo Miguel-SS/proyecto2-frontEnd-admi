@@ -1,10 +1,10 @@
-package frontend.una.cr.controller;
+package cr.una.frontend.controller;
 
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Hospital;
-import frontend.una.cr.service.ServiceFacade;
-import frontend.una.cr.view.AdminView;
-import frontend.una.cr.view.HospitalView;
+import cr.una.frontend.view.HospitalView;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Hospital;
+import cr.una.frontend.service.ServiceFacade;
+import cr.una.frontend.view.AdminView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

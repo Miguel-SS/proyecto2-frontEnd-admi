@@ -1,4 +1,4 @@
-package frontend.una.cr.model;
+package cr.una.frontend.model;
 
 import java.time.LocalTime;
 
@@ -88,11 +88,10 @@ public class Hospital {
         this.id = id;
     }
 
-    /*
+
     public String getTime(){
         int hour = timeAtention.getHour();
         int min = timeAtention.getMinute();
-        return Integer.toString(hour)+":"+Integer.toString(min);
+        return hour +":"+ min;
     }
-     */
 }

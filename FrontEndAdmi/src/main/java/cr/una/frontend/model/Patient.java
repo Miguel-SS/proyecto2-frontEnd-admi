@@ -1,4 +1,4 @@
-package frontend.una.cr.model;
+package cr.una.frontend.model;
 
 import java.util.ArrayList;
 import java.util.List;

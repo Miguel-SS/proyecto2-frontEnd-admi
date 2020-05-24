@@ -1,15 +1,14 @@
-package frontend.una.cr.controller;
+package cr.una.frontend.controller;
 
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Appointment;
-import frontend.una.cr.model.Hospital;
-import frontend.una.cr.model.Patient;
-import frontend.una.cr.service.ServiceFacade;
-import frontend.una.cr.utillities.Constants;
-import frontend.una.cr.view.AdminView;
-import frontend.una.cr.view.EditAppointmentView;
-import frontend.una.cr.view.EditPatientView;
-import frontend.una.cr.view.HospitalView;
+import cr.una.frontend.utillities.Constants;
+import cr.una.frontend.view.EditAppointmentView;
+import cr.una.frontend.view.EditPatientView;
+import cr.una.frontend.view.HospitalView;
+import cr.una.frontend.model.Appointment;
+import cr.una.frontend.model.Hospital;
+import cr.una.frontend.model.Patient;
+import cr.una.frontend.service.ServiceFacade;
+import cr.una.frontend.view.AdminView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -147,7 +146,7 @@ public class AdminController implements ActionListener {
             Patient patient = (Patient) service.searchUser(Integer.parseInt(id));
             if (hospital != null && patient != null) {
                 if (service.searchUser(Integer.parseInt(id)) == null) {
-                    service.add(new Appointment(Integer.parseInt(id), patient, hospital, day));
+                    service.add(new Appointment(Integer.parseInt(id), patient, hospital, day, Integer.parseInt(hour)));
                     appointments = service.loadAppointmentsObjWrapper();
                     tableModelAppointments.setDataVector(appointments, Constants.APPOINTMENT_HEADER);
                     view.setNameTextFild();

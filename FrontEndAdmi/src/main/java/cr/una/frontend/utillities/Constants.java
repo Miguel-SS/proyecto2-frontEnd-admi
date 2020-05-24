@@ -1,4 +1,4 @@
-package frontend.una.cr.utillities;
+package cr.una.frontend.utillities;
 
 public class Constants {
 

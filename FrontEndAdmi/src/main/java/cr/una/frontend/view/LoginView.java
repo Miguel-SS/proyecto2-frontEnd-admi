@@ -1,7 +1,7 @@
-package frontend.una.cr.view;
+package cr.una.frontend.view;
 
-import frontend.una.cr.controller.LoginController;
-import frontend.una.cr.service.ServiceFacade;
+import cr.una.frontend.controller.LoginController;
+import cr.una.frontend.service.ServiceFacade;
 
 import javax.swing.*;
 import java.awt.*;

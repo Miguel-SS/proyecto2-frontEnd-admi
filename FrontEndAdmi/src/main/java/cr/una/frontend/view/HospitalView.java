@@ -1,9 +1,9 @@
-package frontend.una.cr.view;
+package cr.una.frontend.view;
 
-import frontend.una.cr.controller.HospitalController;
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Hospital;
-import frontend.una.cr.service.ServiceFacade;
+import cr.una.frontend.controller.HospitalController;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Hospital;
+import cr.una.frontend.service.ServiceFacade;
 
 import javax.swing.*;
 import java.awt.*;

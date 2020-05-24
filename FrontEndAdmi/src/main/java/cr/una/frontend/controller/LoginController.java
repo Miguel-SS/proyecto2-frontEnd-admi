@@ -1,10 +1,10 @@
-package frontend.una.cr.controller;
+package cr.una.frontend.controller;
 
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Patient;
-import frontend.una.cr.service.ServiceFacade;
-import frontend.una.cr.view.AdminView;
-import frontend.una.cr.view.LoginView;
+import cr.una.frontend.view.LoginView;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Patient;
+import cr.una.frontend.service.ServiceFacade;
+import cr.una.frontend.view.AdminView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -84,7 +84,7 @@ public class LoginController implements ActionListener {
     }
 
     private boolean verifyPass(int id, String password, Admin admin) {
-        if (password != null && -1 == id && !"".equals(password)) {
+        if (password != null && -1 != id && !"".equals(password)) {
             if (admin != null) {
                 return id == admin.getId() && password.equals(admin.getPassword());
             }

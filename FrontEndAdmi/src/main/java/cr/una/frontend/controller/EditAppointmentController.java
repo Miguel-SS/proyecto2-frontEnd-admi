@@ -1,11 +1,12 @@
-package frontend.una.cr.controller;
+package cr.una.frontend.controller;
 
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Appointment;
-import frontend.una.cr.model.Hospital;
-import frontend.una.cr.service.ServiceFacade;
-import frontend.una.cr.view.AdminView;
-import frontend.una.cr.view.EditAppointmentView;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Appointment;
+import cr.una.frontend.model.Hospital;
+import cr.una.frontend.model.Patient;
+import cr.una.frontend.service.ServiceFacade;
+import cr.una.frontend.view.AdminView;
+import cr.una.frontend.view.EditAppointmentView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -67,26 +68,28 @@ public class EditAppointmentController implements ActionListener {
 
     private void save() throws ClassNotFoundException, UnsupportedLookAndFeelException,
             InstantiationException, IOException, IllegalAccessException {
-        String name = view.getNameTextFild();
+        String id = view.getIdTextFild();
         String hospName = view.getHospitalTextFild();
-        int idApp = Integer.parseInt(view.getIdAppointmentTextField());
+        String idApp = view.getIdAppointmentTextField();
         Date day = view.getDayTextFild();
         String hour = view.getHourTextFild();
 
         // Check if the txt fields are empty
-        if (!"".equals(name) &&
+        if (!"".equals(id) &&
                 !"".equals(hospName) &&
                 !"".equals(idApp) &&
                 !"".equals(day) &&
                 !"".equals(hour)) {
             Hospital hospital = service.getHospital(hospName);
+            Patient patient = (Patient) service.searchUser(Integer.parseInt(id));
 
-            if(hospital != null){
+            if(hospital != null && patient == null){
                 appointment.setHospital(hospital);
-                if(service.searchAppointment(idApp)== null) {
-                    appointment.setId(idApp);
-                    appointment.setPatient(name);
+                if(service.searchAppointment(Integer.parseInt(idApp)) == null) {
+                    appointment.setId(Integer.parseInt(idApp));
+                    appointment.setPatient(patient);
                     appointment.setDate(day);
+                    appointment.setHour(Integer.parseInt(hour));
                 } else { view.showMessage("Id repetido"); }
             } else { view.showMessage("No se encontro Consultorios con ese Nombre"); }
 

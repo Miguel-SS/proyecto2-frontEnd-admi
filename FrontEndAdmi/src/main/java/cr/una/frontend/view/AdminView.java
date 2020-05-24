@@ -1,8 +1,8 @@
-package frontend.una.cr.view;
+package cr.una.frontend.view;
 
-import frontend.una.cr.controller.AdminController;
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.service.ServiceFacade;
+import cr.una.frontend.controller.AdminController;
+import cr.una.frontend.service.ServiceFacade;
+import cr.una.frontend.model.Admin;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

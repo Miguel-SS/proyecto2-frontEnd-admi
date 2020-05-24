@@ -1,12 +1,12 @@
-package frontend.una.cr.service;
+package cr.una.frontend.service;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import frontend.una.cr.utillities.Constants;
-import frontend.una.cr.model.Admin;
-import frontend.una.cr.model.Appointment;
-import frontend.una.cr.model.Hospital;
-import frontend.una.cr.model.Patient;
+import cr.una.frontend.utillities.Constants;
+import cr.una.frontend.model.Admin;
+import cr.una.frontend.model.Appointment;
+import cr.una.frontend.model.Hospital;
+import cr.una.frontend.model.Patient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -229,10 +229,10 @@ public class ServiceFacade {
                 1998, "87415630", "Tibas", "9876"
         );
 
-        Appointment appointment1 = new Appointment(1, miguelPatient, esteHospital, new Date(20,5,8));
-        Appointment appointment2 = new Appointment(2, miguelPatient, CYMHospital, new Date(20,03,30));
-        Appointment appointment3 = new Appointment(3, alePatient, esteHospital, new Date(20,11,24));
-        Appointment appointment4 = new Appointment(4, alePatient, CYMHospital, new Date(20,8,21));
+        Appointment appointment1 = new Appointment(1, miguelPatient, esteHospital, new Date(20,5,8), 7);
+        Appointment appointment2 = new Appointment(2, miguelPatient, CYMHospital, new Date(20,03,30), 7);
+        Appointment appointment3 = new Appointment(3, alePatient, esteHospital, new Date(20,11,24), 7);
+        Appointment appointment4 = new Appointment(4, alePatient, CYMHospital, new Date(20,8,21), 7);
 
         miguelPatient.add(appointment1);
         miguelPatient.add(appointment2);
