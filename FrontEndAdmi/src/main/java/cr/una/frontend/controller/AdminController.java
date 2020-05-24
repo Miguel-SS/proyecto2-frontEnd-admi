@@ -226,7 +226,7 @@ public class AdminController implements ActionListener {
             }
             tableModelPatients.setDataVector(newData, Constants.PATIENTS_HEADER);
         } else {
-            tableModelPatients.setDataVector(appointments, Constants.PATIENTS_HEADER);
+            tableModelPatients.setDataVector(patients, Constants.PATIENTS_HEADER);
         }
     }
 

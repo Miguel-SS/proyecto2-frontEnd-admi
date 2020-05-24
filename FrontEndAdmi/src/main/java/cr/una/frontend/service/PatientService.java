@@ -31,30 +31,6 @@ public class PatientService {
     }
 
     /**
-     * This method will load the information from JSON depending if the filter text
-     *
-     * @param searchTerm filter term
-     * @return the list of Students
-     */
-    public List<Patient> searchPatientByTerm(String searchTerm) {
-
-        logger.debug("Obteniendo la lista de pacientes que coinciden con ["+searchTerm+"]");
-
-        List<Patient> patientList = loadAllPatients();
-        List<Patient> updatedPatientList = new ArrayList<Patient>();
-
-        if (patientList != null && patientList.size() > 0) {
-            for (Patient patient : patientList) {
-                if (searchTerm != null && patient.getName().equals(searchTerm)) {
-                    updatedPatientList.add(patient);
-                }
-            }
-        }
-
-        return updatedPatientList;
-    }
-
-    /**
      * This method will load all the data from the WS
      *
      * @return the list of Students
@@ -72,6 +48,13 @@ public class PatientService {
         return patientList;
     }
 
+    public Patient searchById(int id){
+        Patient patientId;
+        String url = REST_URI+"/"+id;
+        patientId = client.target(url).request(MediaType.APPLICATION_JSON).get(Patient.class);
+        return patientId;
+    }
+
     public Patient savePatient(Patient patient) {
         Patient patientSaved;
 
@@ -81,4 +64,16 @@ public class PatientService {
         return patientSaved;
     }
 
+    public Patient update(Patient patient) {
+        Patient patientUpdated;
+
+        patientUpdated = client.target(REST_URI).request(MediaType.APPLICATION_JSON).put(Entity.entity(patient,
+                MediaType.APPLICATION_JSON), Patient.class);
+
+        return patientUpdated;
+    }
+
+    public boolean delete(Patient patient) {
+        return false;
+    }
 }

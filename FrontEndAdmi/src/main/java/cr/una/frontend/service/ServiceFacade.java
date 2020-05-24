@@ -14,11 +14,15 @@ import java.util.Date;
 import java.util.List;
 
 public class ServiceFacade {
+
+    PatientService patientService;
+
     // List
-    private List<Patient> patients;
+    //private List<Patient> patients;
     private List<Admin> admins;
     private List<Appointment> appointments;
     private List<Hospital> hospitals;
+
 
     // Hospitals
     private Hospital CYMHospital;
@@ -26,19 +30,23 @@ public class ServiceFacade {
 
     public ServiceFacade() throws JsonGenerationException,
             JsonMappingException, IOException {
-        patients = new ArrayList<Patient>();
+
+        patientService = new PatientService();
+
+        //patients = new ArrayList<Patient>();
         admins = new ArrayList<Admin>();
         appointments = new ArrayList<Appointment>();
         hospitals = new ArrayList<Hospital>();
 
+
         createHospitals();
         createAdmins();
-        createPatients();
+        //createPatients();
     }
 
     public void add(Object o) {
         if(o.getClass() == Patient.class) {
-            patients.add((Patient) o);
+            patientService.savePatient((Patient) o);
         }
         if(o.getClass() == Admin.class) {
             admins.add((Admin) o);
@@ -53,7 +61,7 @@ public class ServiceFacade {
 
     public void delete(Object o) {
         if(o.getClass() == Patient.class) {
-            patients.remove(o);
+            patientService.delete((Patient) o);
         }
         if(o.getClass() == Admin.class) {
             admins.remove(o);
@@ -78,13 +86,10 @@ public class ServiceFacade {
                 }
             }
         }
-        if (patients.size() > 0) {
-            for (Patient patient : patients) {
-                if (id == patient.getId()) {
-                    return patient;
-                }
-            }
+        if (patientService.searchById(id) != null) {
+            return patientService.searchById(id);
         }
+
         return null;
     }
 
@@ -105,6 +110,7 @@ public class ServiceFacade {
 
     // Load the patients in a matrix for a table
     public Object[][] loadPatientsObjWrapper() {
+        List<Patient> patients = patientService.loadAllPatients();
         Object[][] data = null;
 
         if(patients != null && patients.size() > 0) {
@@ -210,7 +216,9 @@ public class ServiceFacade {
         appointments.add(appointment3);
         appointments.add(appointment4);
 
+        /*
         patients.add(miguelPatient);
         patients.add(alePatient);
+         */
     }
 }
