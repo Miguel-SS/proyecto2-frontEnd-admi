@@ -1,14 +1,11 @@
 package cr.una.frontend.controller;
 
 import cr.una.frontend.utillities.Constants;
-import cr.una.frontend.view.EditAppointmentView;
-import cr.una.frontend.view.EditPatientView;
-import cr.una.frontend.view.HospitalView;
+import cr.una.frontend.view.*;
 import cr.una.frontend.model.Appointment;
 import cr.una.frontend.model.Hospital;
 import cr.una.frontend.model.Patient;
 import cr.una.frontend.service.ServiceFacade;
-import cr.una.frontend.view.AdminView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -60,12 +57,12 @@ public class AdminController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         Object ev = e.getSource();
-        /*if (ev == view.getLogOutBtn()) {
+        if (ev == view.getLogOutBtn()) {
             view.dispose();
             try {
                 LoginView log = new LoginView(service);
             } catch (IOException ex) { ex.printStackTrace(); }
-        } */
+        }
         ///////////////////// appointment///////////////////////////////
         if (ev == view.getFilterButtonAppointment()) {
             updateAppointmentsSearchTerms(view.getSearchNameTextFieldAppointment());
@@ -247,6 +244,7 @@ public class AdminController implements ActionListener {
     private void editPatient() throws ClassNotFoundException, UnsupportedLookAndFeelException,
             InstantiationException, IllegalAccessException {
         if(patient != null) {
+            view.dispose();
             new EditPatientView(patient, service, view.getAdmin());
         } else { view.showMessage("No se eligio Paciente"); }
     }

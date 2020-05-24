@@ -130,8 +130,8 @@ public class ServiceFacade {
             int i = 0;
             for(Appointment appointment : appointments) {
                 data[i][0] = checkIfNull(appointment.getId());
-                data[i][1] = checkIfNull(appointment.getPatient());
-                data[i][4] = checkIfNull(appointment.getHospital());
+                data[i][1] = checkIfNull(appointment.getPatient().getName());
+                data[i][4] = checkIfNull(appointment.getHospital().getName());
                 i++;
             }
         }
