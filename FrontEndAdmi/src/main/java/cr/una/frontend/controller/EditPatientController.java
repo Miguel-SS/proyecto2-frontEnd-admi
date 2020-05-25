@@ -75,6 +75,7 @@ public class EditPatientController implements ActionListener {
             patient.setPhone(phone);
             patient.setDisease(disease);
             patient.setObservation(observation);
+            services.update(patient);
             view.dispose();
             AdminView ad = new AdminView(admin, services);
 

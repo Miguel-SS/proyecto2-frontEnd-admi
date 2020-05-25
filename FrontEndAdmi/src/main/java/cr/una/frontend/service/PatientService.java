@@ -10,6 +10,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +74,9 @@ public class PatientService {
         return patientUpdated;
     }
 
-    public boolean delete(Patient patient) {
-        return false;
+    public void delete(Patient patient) {
+        Response patientId;
+        String url = REST_URI+"/"+patient.getId();
+        client.target(url).request(MediaType.APPLICATION_JSON).delete().close();
     }
 }

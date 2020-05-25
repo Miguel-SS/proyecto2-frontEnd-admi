@@ -198,6 +198,23 @@ public class ServiceFacade {
         return null;
     }
 
+    public void update(Object o){
+        if(o.getClass() == Patient.class) {
+            patientService.update((Patient) o);
+        }
+        if(o.getClass() == Admin.class) {
+            admins.remove(o);
+        }
+        if(o.getClass() == Appointment.class) {
+            appointments.remove(o);
+        }
+        if(o.getClass() == Hospital.class) {
+            hospitals.remove(o);
+        }
+
+    }
+
+
     private void createPatients() {
         Patient miguelPatient = new Patient(402360294, "Miguel", "Sanchez",
                 1997, "88094192", "Heredia", "1234"
